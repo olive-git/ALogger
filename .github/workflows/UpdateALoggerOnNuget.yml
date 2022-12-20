@@ -37,9 +37,9 @@ jobs:
       run: nuget restore $SOLUTION
 
     - name: Setup .NET
-      uses: action/setup-dotnet@v1
+      uses: action/setup-dotnet@v3
       with: 
-        dotnet-version: 5.x
+        dotnet-version: 6.x
 
     - name: Build
       run: dotnet build $SOLUTION --configuration $BUILD_CONFIG -p:Version=$BUILD_VERSION --no-restore
