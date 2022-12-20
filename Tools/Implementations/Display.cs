@@ -1,5 +1,6 @@
 ﻿using ALogger.Constantes;
 using ALogger.Tools.Interfaces;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace ALogger.Tools.Implementations
     public class Display : IDisplay
     {
         private string space = "  ";
+        string logString;
+        string shopId = IDisplay._request.Query["shopId"];
 
         public void display(DateTime date, string log_level, string message, string className, string appName, int line, string memberName)
         {
@@ -20,7 +23,16 @@ namespace ALogger.Tools.Implementations
             Console.Write($"{log_level}");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine($" App name: {appName}; class name: {className}; method name: {memberName} line {line}: {message}");
+            logString = $" App name: {appName}; class name: {className}; method name: {memberName} line {line}; ";
+            
+            if (shopId != "" && shopId != null)
+            {
+                logString += $"ShopId : {shopId}; ";
+            }
+
+            logString += $": {message}";
+            
+            Console.WriteLine(logString);
         }
     }
 }
