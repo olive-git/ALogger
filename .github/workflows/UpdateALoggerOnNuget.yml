@@ -23,7 +23,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
 
     - name: Setup NuGet
       uses: nuget/setup-nuget@v1
@@ -44,5 +45,5 @@ jobs:
       run: dotnet test $SOLUTION --no-restore --no-build --verbosity normal
 
     - name: Publish
-      run: nuget push .\bin\Release\ALogger.Logger.1.0.1.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.ALOGGER_NUGET_API_KEY}}
+      run: nuget push ./bin/Release/ALogger.Logger.1.0.1.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.ALOGGER_NUGET_API_KEY}}
 
