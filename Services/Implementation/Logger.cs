@@ -20,11 +20,12 @@ namespace ALogger.Services.Implementation
     public class Logger : ILogger
     {
 
-        #region Properties
+        #region Propertie
         private readonly Display _Log;
         private readonly int _log_ranking;
         private string _className = new StackFrame(1).GetMethod().DeclaringType.Name;
         private string _appName = AppName.GetEntryAssembly().GetName().Name;
+        string variable;
         #endregion
 
         #region Constructors
