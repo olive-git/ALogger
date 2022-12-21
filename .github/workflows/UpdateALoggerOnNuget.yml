@@ -44,5 +44,5 @@ jobs:
       run: dotnet test $SOLUTION --no-restore --no-build --verbosity normal
 
     - name: Publish
-      run: nuget push **\*.nupckg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.ALOGGER_NUGET_API_KEY}}
+      run: nuget push bin\Release\ALogger.Logger.1.0.1.nupckg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.ALOGGER_NUGET_API_KEY}}
 
