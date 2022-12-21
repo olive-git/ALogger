@@ -21,11 +21,10 @@ namespace ALogger.Services.Implementation
     {
 
         #region Properties
-        private readonly Display _Log;
-        private readonly int _log_ranking;
-        private string _className = new StackFrame(1).GetMethod().DeclaringType.Name;
-        private string _appName = AppName.GetEntryAssembly().GetName().Name;
-        string variable;
+            private readonly Display _Log;
+            private readonly int _log_ranking;
+            private string _className = new StackFrame(1).GetMethod().DeclaringType.Name;
+            private string _appName = AppName.GetEntryAssembly().GetName().Name;
         #endregion
 
         #region Constructors
