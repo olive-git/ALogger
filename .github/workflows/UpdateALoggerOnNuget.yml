@@ -7,6 +7,9 @@ on:
   push:
     branches:
     - main
+  create:
+    branches:
+    - release/**
     
 jobs:
   
@@ -17,27 +20,27 @@ jobs:
       SOLUTION: 'ALogger.Logger.sln'
 
 
-    runs-on: ubuntu_latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
 
     - name: Get Build Version
       run: |
-        Import-Modules .\build\GetBuildVersion.psm1
+        Import-Module .\build\GetBuildVersion.psm1
         Write-Host $Env:GITHUB_REF
         $version = GetBuildVersion -VersionString $Env:GITHUB_REF
         echo "BUILD_VERSION=$version" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
       shell: pwsh
 
-    - name: Setup Nuget
+    - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.0
 
     - name: Restore dependencies
       run: nuget restore $SOLUTION
 
     - name: Setup .NET
-      uses: action/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with: 
         dotnet-version: 5.x
 
@@ -49,5 +52,5 @@ jobs:
 
     - name: Publish
       if: startsWith(github.ref, 'refs/head/release')
-      run: nuget push **\*.nupckg -Source 'https://www.nuget.org/packages/ALogger.Logger' -ApiKey ${{secrets.ALOGGER_NUGET_API_KEY}}
+      run: nuget push **\*.nupckg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.ALOGGER_NUGET_API_KEY}}
 
