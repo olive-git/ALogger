@@ -25,7 +25,6 @@ namespace ALogger.Services.Implementation
         private readonly int _log_ranking;
         private string _className = new StackFrame(1).GetMethod().DeclaringType.Name;
         private string _appName = AppName.GetEntryAssembly().GetName().Name;
-        string variable;
         #endregion
 
         #region Constructors
