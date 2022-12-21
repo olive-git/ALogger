@@ -41,7 +41,7 @@ jobs:
       run: dotnet build $SOLUTION --configuration $BUILD_CONFIG --no-restore
       
     - name: Run tests
-      run: dotnet test .\ALogger.Logger.sln --no-restore --no-build --verbosity normal
+      run: dotnet test $SOLUTION --no-restore --no-build --verbosity normal
 
     - name: Publish
       if: startsWith(github.ref, 'refs/head/release')
