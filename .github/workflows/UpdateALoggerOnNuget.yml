@@ -37,7 +37,8 @@ jobs:
         dotnet-version: 6.x
 
     - name: Build
-      run: dotnet build .\ALogger.Logger.csproj --configuration Release --no-restore
+
+      run: dotnet build $SOLUTION --configuration $BUILD_CONFIG --no-restore
       
     - name: Run tests
       run: dotnet test .\ALogger.Logger.sln --no-restore --no-build --verbosity normal
