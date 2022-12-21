@@ -49,5 +49,5 @@ jobs:
 
     - name: Publish
       if: startsWith(github.ref, 'refs/head/release')
-      run: nuget push **\*.nupckg -Source 'https://www.nuget.org/packages/ALogger.Logger' -ApiKey ${{secrets.ALOGGER_NUGET_API_KEY}}
+      run: nuget push **\*.nupckg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.ALOGGER_NUGET_API_KEY}}
 
